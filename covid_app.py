@@ -6,11 +6,11 @@ import numpy as np
 from google.oauth2 import service_account
 from google.cloud import storage
 from io import BytesIO
-#import plotly.express as px
+import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
-from mpl_toolkits import axisartist
-from mpl_toolkits.axes_grid1 import host_subplot
+#from mpl_toolkits import axisartist
+#from mpl_toolkits.axes_grid1 import host_subplot
 from datetime import datetime, date
 from matplotlib.pyplot import subplot2grid
 from matplotlib.lines import Line2D
