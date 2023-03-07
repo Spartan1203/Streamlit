@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import pydeck as pdk
 import plotly.express as px
+from google.oauth2 import service_account
+from google.cloud import storage
 
 DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv")
 #Authenticating connection to cloud data source
