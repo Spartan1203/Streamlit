@@ -3,6 +3,5 @@ google-cloud-storage==2.7.0
 plotly
 seaborn
 matplotlib
-mpl_toolkits
 datetime
 time
