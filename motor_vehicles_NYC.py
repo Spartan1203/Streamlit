@@ -18,7 +18,7 @@ st.title("Sars-CoV-2 Data Exploration Project")
 st.title('Motor Vehicle Collision in New York City')
 st.markdown("This is a streamlit dashboard to monitor vehicle collision in NYC")
 
-@st.cache(persist=True)
+@st.cache(persist=True, allow_output_mutation=True)
 def load_data(nrows):
 	data=pd.read_csv(DATA_URL)
 	return data
