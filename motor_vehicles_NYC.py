@@ -6,7 +6,7 @@ import plotly.express as px
 from google.oauth2 import service_account
 from google.cloud import storage
 
-DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv?raw=true")
+DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv")
 #Authenticating connection to cloud data source
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"]
