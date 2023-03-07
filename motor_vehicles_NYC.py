@@ -20,8 +20,9 @@ st.markdown("This is a streamlit dashboard to monitor vehicle collision in NYC")
 
 @st.cache(persist=True)
 def load():
-	data=pd.read_csv(DATA_URL)
-	return data
+	act=pd.read_csv(DATA_URL)
+	return act
+data=load()
 data.dropna(subset=['LATITUDE','LONGITUDE'],inplace=True)
 lowercase=lambda x: str(x).lower()
 data.rename(lowercase, axis='columns', inplace=True)
