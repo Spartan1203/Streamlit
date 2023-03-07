@@ -5,6 +5,7 @@ import pydeck as pdk
 import plotly.express as px
 from google.oauth2 import service_account
 from google.cloud import storage
+from IO import BytesIO
 
 DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv")
 #Authenticating connection to cloud data source
@@ -18,16 +19,19 @@ st.title("Sars-CoV-2 Data Exploration Project")
 st.title('Motor Vehicle Collision in New York City')
 st.markdown("This is a streamlit dashboard to monitor vehicle collision in NYC")
 
+blob = client.get_bucket('edelweis').get_blob('Motor_Vehicle_Collisions_-_Crashes.csv')
+blobBytes = blob.download_as_bytes()
+info = BytesIO(blobBytes)
+
 @st.cache(persist=True, allow_output_mutation=True)
-def load_data(nrows):
-	data=pd.read_csv(DATA_URL)
-	return data
-data = load_data(100000)
-data.dropna(subset=['LATITUDE','LONGITUDE'],inplace=True)
-lowercase=lambda x: str(x).lower()
-data.rename(lowercase, axis='columns', inplace=True)
-data.rename(columns={'crash_date_crash_time':'date/time'},inplace=True)
-original_data=data
+def load_data(info):
+    dataset = pd.read_csv(info)
+    return pd.DataFrame(dataset)
+
+dataset = load_data(info)
+pd.set_option('mode.chained_assignment',
+              None
+              )
 st.header('Where are the most injured people in NYC?')
 injured_people=st.slider("Number of persons injured in vehicle collisions", 0, 19)
 st.map(data.query("injured_persons >= @injured_people")[['latitude','longitude']].dropna(how='any'))
