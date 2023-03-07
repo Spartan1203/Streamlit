@@ -6,7 +6,7 @@ import plotly.express as px
 from google.oauth2 import service_account
 from google.cloud import storage
 
-DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv")
+DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv")
 #Authenticating connection to cloud data source
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["gcp_service_account"]
@@ -20,7 +20,7 @@ st.markdown("This is a streamlit dashboard to monitor vehicle collision in NYC")
 
 @st.cache(persist=True)
 def load_data(nrows):
-	data=pd.read_csv(DATA_URL,usecols=['CRASH_DATE','CRASH_TIME','LONGITUDE','LATITUDE'],nrows=nrows,parse_dates=[['CRASH_DATE','CRASH_TIME']])
+	data=pd.read_csv(DATA_URL,nrows=nrows,parse_dates=[['CRASH_DATE','CRASH_TIME']])
 	return data
 data = load_data(100000)
 data.dropna(subset=['LATITUDE','LONGITUDE'],inplace=True)
