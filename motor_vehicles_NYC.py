@@ -4,7 +4,15 @@ import numpy as np
 import pydeck as pdk
 import plotly.express as px
 
-DATA_URL = ("/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv")
+DATA_URL = ("https://storage.cloud.google.com/edelweis/Motor_Vehicle_Collisions_-_Crashes.csv/home/victor/Downloads/Motor_Vehicle_Collisions_-_Crashes.csv")
+#Authenticating connection to cloud data source
+credentials = service_account.Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"]
+)
+client = storage.Client(credentials=credentials)
+st.title("Sars-CoV-2 Data Exploration Project")
+# Loading Dataset
+
 st.title('Motor Vehicle Collision in New York City')
 st.markdown("This is a streamlit dashboard to monitor vehicle collision in NYC")
 
